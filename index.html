@@ -156,34 +156,28 @@
     }
     .light .hero::before { background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); }
 
-    .hero-inner {
-      max-width: 1140px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
-      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 64px; align-items: center;
+    .hero-inner { max-width: 1140px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: flex; align-items: center; gap: 64px; }
+    .hero-left { flex: 1 1 auto; min-width: 0; }
+    .hero-right { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; }
+    .hero-photo-wrap {
+      position: relative; width: 260px;
     }
-    .hero-left { min-width: 0; }
-
-    /* Right-side pillar cards — anchor the hero visually */
-    .hero-aside { display: flex; flex-direction: column; gap: 12px; opacity: 0; animation: fade-up .7s ease .6s forwards; }
-    .pillar {
-      padding: 18px 22px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      transition: border-color .2s, background .2s, transform .2s;
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--navy) 0%, transparent 60%);
+      z-index: 0;
     }
-    .pillar:hover { border-color: var(--border-hi); background: var(--surface-2); transform: translateY(-2px); }
-    .pillar-label { font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-4); margin-bottom: 8px; }
-    .pillar-title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -.2px; margin-bottom: 4px; }
-    .pillar-body { font-size: 12.5px; color: var(--text-3); line-height: 1.55; }
-
-    /* Multi-item "Also" box — de-emphasized third card */
-    .pillar-multi { padding: 16px 20px; }
-    .pillar-mini-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin: 0; padding: 0; }
-    .pillar-mini-list li { font-size: 12.5px; color: var(--text-3); line-height: 1.5; display: flex; align-items: baseline; gap: 10px; }
-    .pillar-mini-list li a { color: var(--text-2); transition: color .15s; }
-    .pillar-mini-list li a:hover { color: var(--navy-lt); }
-    .pmi-label { flex-shrink: 0; min-width: 62px; font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-4); }
+    .hero-photo {
+      position: relative; z-index: 1;
+      width: 260px; height: 320px;
+      object-fit: cover; object-position: center top;
+      border-radius: 14px;
+      display: block;
+      opacity: 0; animation: fade-up .8s ease .6s forwards;
+    }
 
     @keyframes fade-up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fade-in  { from { opacity:0; } to { opacity:1; } }
@@ -311,7 +305,6 @@
     .rec-item a { color: inherit; transition: color .15s; }
     .rec-item a:hover { color: var(--navy-lt); }
     .rec-sup { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-4); margin-right: 3px; }
-    .rec-icon { flex-shrink: 0; color: var(--text-4); }
 
     /* ── SECTION SHARED ──────────────────────── */
     .section { padding: 88px 32px; position: relative; z-index: 1; }
@@ -364,10 +357,10 @@
     .cs-text { font-size: 15.5px; color: var(--text-2); line-height: 1.76; }
     .cs-text strong { color: var(--text); font-weight: 600; }
 
-    .stat-row { display:flex; gap:0; border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:30px; align-items:stretch; }
-    .stat-item { flex:1 1 0; padding:20px 22px; border-right:1px solid var(--border); background:var(--surface); display:flex; flex-direction:column; justify-content:center; min-width:0; }
+    .stat-row { display:flex; gap:0; border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:30px; }
+    .stat-item { flex:1; padding:20px 22px; border-right:1px solid var(--border); background:var(--surface); }
     .stat-item:last-child { border-right:none; }
-    .stat-num { font-size:clamp(24px,3.5vw,36px); font-weight:900; color:var(--white-acc); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+    .stat-num { font-size:clamp(24px,3.5vw,36px); font-weight:900; color:var(--white-acc); letter-spacing:-1px; line-height:1; margin-bottom:5px; }
     .light .stat-num { color: var(--navy); }
     .stat-desc { font-size:12px; color:var(--text-3); font-weight:500; }
 
@@ -399,7 +392,7 @@
     .feat-row { display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--border); }
     .feat-row:first-child { padding-top:4px; }
     .feat-row:last-child { border-bottom:none; padding-bottom:0; }
-    .feat-icon { flex-shrink:0; margin-top:1px; width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:6px; background:var(--navy-dim); color:var(--navy-lt); border:1px solid rgba(79,132,248,.18); }
+    .feat-icon { font-size:18px; flex-shrink:0; margin-top:1px; width:26px; text-align:center; }
     .feat-name { font-size:14px; font-weight:700; color:var(--text); margin-bottom:4px; letter-spacing:-.1px; }
     .feat-body { font-size:13px; color:var(--text-3); line-height:1.6; }
 
@@ -422,7 +415,6 @@
     .exp-block.compact .exp-dept { margin-bottom:10px; }
     .exp-block.compact .exp-points { margin-bottom:0; }
     .exp-block.compact .exp-points li { font-size:13.5px; }
-    .exp-divider { font-size:9.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-4); padding:28px 0 4px; border-top:1px solid var(--border); margin-top:8px; }
     .edu-highlights { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .edu-badge { font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:4px; background:var(--navy-dim); border:1px solid rgba(79,132,248,.2); color:var(--navy-lt); }
 
@@ -431,7 +423,7 @@
     .sg { background:var(--bg); padding:24px 26px; }
     .section-alt .sg { background:var(--bg-1); }
     .sg-title { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border); }
-    .sg-tags { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+    .sg-tags { display:flex; flex-wrap:wrap; gap:7px; }
     .s-tag { font-size:12.5px; font-weight:500; padding:5px 12px; border-radius:5px; background:var(--surface); border:1px solid var(--border); color:var(--text-2); transition:all .15s; cursor:default; }
     .s-tag:hover { border-color:var(--border-hi); color:var(--text); }
     .s-tag.hi { background:var(--navy-dim); border-color:rgba(79,132,248,.28); color:var(--navy-lt); font-weight:600; }
@@ -492,14 +484,12 @@
 
     .c-or { display:flex; align-items:center; gap:12px; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-4); margin-bottom:20px; }
     .c-or::before, .c-or::after { content:''; flex:1; height:1px; background:var(--border); }
-    .c-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px; align-items:stretch; }
+    .c-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px; }
     .c-link {
-      display:inline-flex; align-items:center; gap:9px; padding:11px 20px;
+      display:flex; align-items:center; gap:9px; padding:11px 20px;
       background:var(--surface); border:1px solid var(--border);
       border-radius:var(--radius); color:var(--text-2); font-size:13.5px; font-weight:600; transition:all .2s;
-      line-height:1; min-height:42px;
     }
-    .c-link svg { flex-shrink:0; }
     .c-link:hover { background:var(--surface-2); border-color:var(--navy); color:var(--navy-lt); transform:translateY(-2px); }
     .c-divider { border:none; border-top:1px solid var(--border); margin:0 0 22px; }
     .c-note { font-size:13px; color:var(--text-3); }
@@ -536,6 +526,17 @@
     .mock-msg.a { background:var(--navy-dim); border:1px solid rgba(79,132,248,.18); color:var(--text-2); border-radius:6px 6px 2px 6px; margin-left:auto; display:block; }
     .mock-ai-tag { font-size:7.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); margin-right:4px; }
 
+    /* ── QUICK NAV ───────────────────────────── */
+    .quick-nav { position:fixed; inset:0; z-index:500; background:rgba(3,6,16,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; }
+    .quick-nav.open { opacity:1; pointer-events:all; }
+    .qn-box { background:var(--bg-1); border:1px solid var(--border-hi); border-radius:var(--radius-lg); padding:28px 32px; min-width:280px; max-width:380px; width:90%; }
+    .qn-head { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:16px; }
+    .qn-items { display:flex; flex-direction:column; gap:7px; margin-bottom:18px; }
+    .qn-item { display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:6px; background:var(--surface); border:1px solid var(--border); color:var(--text-2); font-size:13px; font-weight:600; transition:all .15s; }
+    .qn-item:hover { border-color:var(--navy); color:var(--navy-lt); background:var(--navy-dim); }
+    .qn-foot { font-size:10.5px; color:var(--text-4); text-align:center; }
+    kbd { display:inline-flex; align-items:center; justify-content:center; background:var(--bg-2); border:1px solid var(--border-hi); border-radius:4px; padding:2px 6px; font-size:10px; font-weight:700; color:var(--text-2); font-family:inherit; min-width:20px; }
+    .qn-item kbd { min-width:26px; height:22px; flex-shrink:0; }
 
     /* ── MY TAKE ─────────────────────────────── */
     .take-section { position:relative; overflow:hidden; }
@@ -547,19 +548,6 @@
     .take-col p { font-size:15.5px; color:var(--text-2); line-height:1.82; margin-bottom:20px; }
     .take-col p:last-child { margin-bottom:0; }
     .take-col p strong { color:var(--text); font-weight:600; }
-    .take-attribution {
-      margin-top: 44px; padding-top: 22px;
-      border-top: 1px solid var(--border);
-      font-size: 12.5px; color: var(--text-4);
-      display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap;
-    }
-    .take-attribution a {
-      color: var(--text-3);
-      border-bottom: 1px dotted var(--text-4);
-      transition: color .2s, border-color .2s;
-    }
-    .take-attribution a:hover { color: var(--navy-lt); border-color: var(--navy-lt); }
-    .take-attribution svg { color: var(--text-4); flex-shrink: 0; }
 
     /* ── SCROLL REVEAL ───────────────────────── */
     .reveal { opacity:0; transform:translateY(18px); transition:opacity .65s ease,transform .65s ease; }
@@ -567,8 +555,6 @@
 
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width:900px) {
-      .hero-inner { grid-template-columns:1fr; gap:44px; }
-      .hero-aside { order:2; }
       .about-grid { grid-template-columns:1fr; gap:40px; }
       .take-grid { grid-template-columns:1fr; gap:24px; }
       .hh-content-grid { grid-template-columns:1fr; gap:44px; }
@@ -585,38 +571,15 @@
     @media (max-width:600px) {
       .section { padding:68px 20px; }
       .hero { padding:100px 20px 60px; }
+      .hero-inner { flex-direction: column-reverse; gap: 32px; }
+      .hero-right { width: 100%; align-items: flex-start; }
+      .hero-photo-wrap { width: 140px; }
+      .hero-photo { width: 140px; height: 172px; }
       .hero-name { letter-spacing:-1.5px; }
       .hero-meta { flex-direction:column; gap:4px; align-items:flex-start; }
-      .hero-meta-item { padding:3px 0; }
       .hero-meta-item::after { display:none; }
       .hh-cta { flex-direction:column; align-items:flex-start; }
       .rec-item { padding:14px 18px; }
-      .hh-title { word-break: break-word; }
-      .stat-num { font-size: 28px; }
-      .book-row { padding:22px; }
-      .book-hook, .book-detail { font-size:14px; }
-      .exp-points li { font-size:13.5px; }
-      .contact-form { max-width:100%; }
-      .c-heading { letter-spacing:-1px; }
-      .take-heading { font-size: 26px; line-height:1.18; }
-      .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
-    }
-    @media (max-width:430px) {
-      .nav-inner { padding: 0 20px; }
-      .hero-name { font-size: 52px; line-height: .95; letter-spacing:-1px; }
-      .hero-bio { font-size: 15px; line-height: 1.7; }
-      .forbes-badge { font-size: 11px; padding: 5px 12px 5px 7px; }
-      .pillar { padding: 14px 16px; }
-      .pillar-title { font-size: 15px; }
-      .pmi-label { min-width: 54px; }
-      .hh-title { font-size: 34px; }
-      .c-heading { font-size: 38px; }
-      .mock-kpi-val { font-size: 12px; }
-      .mock-kpi-lbl { font-size: 8px; }
-      .feat-row { gap: 12px; padding: 16px 0; }
-      .c-link { padding: 10px 14px; font-size: 13px; }
-      .calendly-btn { padding: 12px 20px; font-size: 13.5px; width: 100%; justify-content: center; }
-      .form-submit { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -637,9 +600,7 @@
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode" title="Switch to light mode">
-        <svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode" title="Switch to light mode">☀️</button>
       <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
@@ -661,13 +622,13 @@
   <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
 
   <div class="hero-inner">
-    <div class="hero-left">
 
+    <div class="hero-left">
       <!-- Forbes badge — biggest differentiator, first thing recruiters see -->
       <a href="https://www.forbes.com/sites/briannegarrett/2020/05/08/8-under-18-the-young-trailblazers-stepping-up-during-the-pandemic/"
          target="_blank" rel="noopener" class="forbes-badge">
         <span class="forbes-f">F</span>
-        Forbes · 8 Under 18 &nbsp;<span class="forbes-badge-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+        Forbes · 8 Under 18 &nbsp;<span class="forbes-badge-arrow">↗</span>
       </a>
 
       <div class="hero-eyebrow">New York &nbsp;·&nbsp; 2026</div>
@@ -682,7 +643,7 @@
       </div>
 
       <p class="hero-bio">
-        I work with large financial institutions on crypto compliance and financial crime risk — helping banks understand where regulation is heading before it gets there. At <strong>EY</strong>, that means advising some of the largest names in financial services. Outside of work, I build software and write science fiction.
+        I help the world's largest financial institutions navigate crypto compliance before the regulatory window closes. At <strong>EY</strong>, I advise the banks that move markets. Outside of it, I build software and write science fiction.
       </p>
 
       <div class="hero-meta">
@@ -700,26 +661,12 @@
       </div>
     </div>
 
-    <aside class="hero-aside" aria-label="Current focus areas">
-      <a href="#background" class="pillar">
-        <div class="pillar-label">Currently</div>
-        <div class="pillar-title">EY Financial Crimes</div>
-        <div class="pillar-body">Technology Consulting Staff · Crypto compliance at GSIB scale</div>
-      </a>
-      <a href="#hosthelper" class="pillar">
-        <div class="pillar-label">Building</div>
-        <div class="pillar-title">HostHelper</div>
-        <div class="pillar-body">AI-powered STR management platform · In beta</div>
-      </a>
-      <div class="pillar pillar-multi">
-        <div class="pillar-label">Also</div>
-        <ul class="pillar-mini-list">
-          <li><span class="pmi-label">Skills</span><a href="#skills">Next.js · Claude AI · Supabase</a></li>
-          <li><span class="pmi-label">Writing</span>The Blood Remembers — sci-fi trilogy</li>
-          <li><span class="pmi-label">Off-hours</span>Weightlifting &amp; training · side projects · reading</li>
-        </ul>
+    <div class="hero-right">
+      <div class="hero-photo-wrap">
+        <img src="headshot.jpg" alt="Rafael Velasquez" class="hero-photo" />
       </div>
-    </aside>
+    </div>
+
   </div>
 
   <div class="hero-scroll" aria-hidden="true">
@@ -732,27 +679,23 @@
 <div class="rec-strip" role="complementary" aria-label="Recognition and credentials">
   <div class="rec-strip-inner">
     <div class="rec-item">
-      <svg class="rec-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+      📰&nbsp;
       <a href="https://www.forbes.com/sites/briannegarrett/2020/05/08/8-under-18-the-young-trailblazers-stepping-up-during-the-pandemic/"
          target="_blank" rel="noopener">
         <span class="rec-sup">Press</span>Forbes · 8 Under 18 · 2020
       </a>
     </div>
     <div class="rec-item">
-      <svg class="rec-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
-      <span><span class="rec-sup">Current</span>Ernst &amp; Young · Financial Crimes</span>
+      🎓&nbsp;<span><span class="rec-sup">Education</span>Villanova University · B.S. Computer Science</span>
     </div>
     <div class="rec-item">
-      <svg class="rec-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-      <span><span class="rec-sup">Education</span>Villanova University · B.S. Computer Science</span>
+      ⭐&nbsp;<span><span class="rec-sup">Academic</span>GPA 3.8 · Dean's List 6×</span>
     </div>
     <div class="rec-item">
-      <svg class="rec-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <span><span class="rec-sup">Academic</span>GPA 3.8 · Dean's List 6×</span>
+      🏦&nbsp;<span><span class="rec-sup">Current</span>Ernst &amp; Young · Financial Crimes</span>
     </div>
     <div class="rec-item">
-      <svg class="rec-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span><span class="rec-sup">Based in</span>New York, NY</span>
+      📍&nbsp;<span><span class="rec-sup">Based in</span>New York, NY</span>
     </div>
   </div>
 </div>
@@ -835,7 +778,7 @@
 
         <div class="stat-row">
           <div class="stat-item">
-            <div class="stat-num" style="display:inline-flex;align-items:center;gap:4px">6<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:.7"><path d="M5 12h14M12 5l7 7-7 7"/></svg>1</div>
+            <div class="stat-num">6→1</div>
             <div class="stat-desc">Tools consolidated</div>
           </div>
           <div class="stat-item">
@@ -885,17 +828,17 @@
               <div class="mock-kpi">
                 <div class="mock-kpi-val">$12,480</div>
                 <div class="mock-kpi-lbl">Revenue · Oct</div>
-                <div class="mock-kpi-trend"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg> 12%</div>
+                <div class="mock-kpi-trend">↑ 12%</div>
               </div>
               <div class="mock-kpi">
                 <div class="mock-kpi-val">14</div>
                 <div class="mock-kpi-lbl">Bookings</div>
-                <div class="mock-kpi-trend"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg> 3 this week</div>
+                <div class="mock-kpi-trend">↑ 3 this week</div>
               </div>
               <div class="mock-kpi">
                 <div class="mock-kpi-val">87%</div>
                 <div class="mock-kpi-lbl">Occupancy</div>
-                <div class="mock-kpi-trend"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg> 5%</div>
+                <div class="mock-kpi-trend">↑ 5%</div>
               </div>
             </div>
             <div class="mock-panels">
@@ -915,7 +858,7 @@
                 <div class="mock-panel-lbl">AI Guest Support</div>
                 <div class="mock-msg g">WiFi password?</div>
                 <div class="mock-msg a"><span class="mock-ai-tag">AI</span>GuestNet_5G · Pass: Retreat24</div>
-                <div class="mock-msg g">Perfect, thanks!</div>
+                <div class="mock-msg g">Perfect, thanks! 🙏</div>
               </div>
             </div>
           </div>
@@ -923,36 +866,28 @@
 
         <div class="feat-list">
           <div class="feat-row">
-            <div class="feat-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-            </div>
+            <div class="feat-icon">🤖</div>
             <div>
               <div class="feat-name">AI Guest Portal</div>
               <div class="feat-body">Claude-powered support that handles check-in, FAQs, and property questions — without a human on call</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
-            </div>
+            <div class="feat-icon">📊</div>
             <div>
               <div class="feat-name">Owner Dashboard</div>
               <div class="feat-body">Revenue tracking, occupancy analytics, maintenance logs, and booking calendar in one view</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            </div>
+            <div class="feat-icon">🔗</div>
             <div>
               <div class="feat-name">Direct Booking</div>
               <div class="feat-body">Property-branded web app that takes reservations directly — no platform cut</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            </div>
+            <div class="feat-icon">⚙️</div>
             <div>
               <div class="feat-name">Automated Ops</div>
               <div class="feat-body">Checkout checklists, maintenance alerts, guest QR codes, and scheduled automations</div>
@@ -1033,9 +968,6 @@
       </div>
     </div>
 
-    <!-- Education divider -->
-    <div class="exp-divider reveal" style="transition-delay:.25s">Education</div>
-
     <!-- Villanova -->
     <div class="exp-block reveal" style="transition-delay:.28s">
       <div>
@@ -1062,36 +994,29 @@
   <div class="container">
     <hr class="section-rule" />
     <div class="section-label reveal">My Take</div>
-    <div class="take-tag reveal" style="transition-delay:.06s">Services as Software</div>
+    <div class="take-tag reveal" style="transition-delay:.06s">Point of View</div>
     <h2 class="take-heading reveal" style="transition-delay:.10s">
-      AI isn't augmenting services.<br />
-      <em>It's replacing the model.</em>
+      AI doesn't assist financial crime compliance.<br />
+      <em>It replaces it.</em>
     </h2>
     <div class="take-grid">
       <div class="take-col reveal" style="transition-delay:.16s">
         <p>
-          The professional services industry is built on a single assumption: <strong>the work requires humans to produce it.</strong> Strategy decks, control testing, audit workpapers, legal memos — billed by the hour, priced on headcount, margin-protected by how long it takes.
+          The rule-based transaction monitoring systems running at most banks today were designed in the 2000s. They alert on patterns set by analysts years ago, require massive compliance teams to triage false positives, and miss typologies that evolved last quarter. <strong>They are structurally obsolete</strong> — and the institutions running them know it.
         </p>
         <p>
-          That assumption is breaking. Agentic AI doesn't make consultants faster — it replicates the work at near-zero marginal cost. A compliance testing engagement that staffed six people for two weeks now runs overnight, supervised rather than delivered. The deliverable survives. The model underneath it doesn't.
+          AI changes the equation. Not by augmenting the existing stack — but by replacing the core logic. Real-time graph traversal across transaction networks. Typology detection that learns as schemes evolve. SAR narratives generated in seconds, not hours. The infrastructure for this exists today.
         </p>
       </div>
       <div class="take-col reveal" style="transition-delay:.24s">
         <p>
-          The services sector has outlasted every cycle before — mainframes, ERP, offshoring, cloud — by reinventing around each one. This wave is different. <strong>The work itself is becoming the software.</strong>
+          The institutions that move first will build a compliance advantage that compounds. Faster detection. Lower false positive rates. Smaller headcount per dollar of risk managed. Regulators are watching — and the firms that define the standard early get to shape what "adequate" looks like for everyone else.
         </p>
         <p>
-          Strategy, Big 4, global IT, CX, legal — the firms rebuilding delivery around AI will ship products, not engagements. The ones treating AI as a productivity tool will compress margins until there's nothing left to protect. I live on both sides of this: advising GSIBs on financial crime at EY, shipping AI-native software on the side. The line between the two isn't blurring. It's gone.
+          <strong>The ones who wait are accumulating invisible risk.</strong> Not because they're being reckless — but because the threat surface is evolving faster than any static ruleset can track. The question isn't whether AI rewrites financial crime compliance. It's which institutions are building that capability now, and which ones are still writing exceptions.
         </p>
       </div>
     </div>
-
-    <p class="take-attribution reveal" style="transition-delay:.32s">
-      Aligned with
-      <a href="https://www.linkedin.com/pulse/services-as-software-we-yet-elmer-velasquez-0v3hf/"
-         target="_blank" rel="noopener">Elmer Velasquez's thinking on Services-as-Software</a>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
-    </p>
   </div>
 </section>
 
@@ -1163,9 +1088,14 @@
         <div class="book-status-tag">In progress · Book I</div>
         <div class="book-title">The Blood Remembers</div>
         <div class="book-genre">Science Fiction · Three-book series</div>
+        <p class="book-hook">
+          750 years from now, a civilization of eight billion people is running on the architecture of one man's design — and no one knows it. A story about inherited memory, bloodlines, and the weight of someone else's grief.
+        </p>
       </div>
       <div class="book-detail">
-        I kept coming back to one question: what do you owe to people you never met, whose decisions you still live inside? It's a story about inherited identity — not as metaphor, but as biology — and what happens when a system built by one person outlives them by seven centuries. <strong>20+ chapters in. Building it slowly.</strong>
+        The world runs on <strong>mnemoric proteins</strong> — a biological technology that encodes emotional memory into DNA and passes it forward at birth. Not facts, not stories. Just feelings, stripped of context, inherited like eye color. The deeper your bloodline, the higher your standing.
+        <br /><br />
+        20+ chapters written. Full world bible. Building it slowly, the right way.
       </div>
     </div>
   </div>
@@ -1202,10 +1132,7 @@
           Send message
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <div class="form-success" id="form-success">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>
-          Opening your email client — I'll reply same day.
-        </div>
+        <div class="form-success" id="form-success">✓ Opening your email client — I'll reply same day.</div>
       </div>
     </form>
 
@@ -1213,8 +1140,7 @@
     <a href="https://calendly.com/YOUR_CALENDLY_USERNAME/20min" target="_blank" rel="noopener"
        class="calendly-btn reveal" style="transition-delay:.28s">
       <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Schedule 20 minutes
-      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Schedule 20 minutes →
     </a>
 
     <div class="c-or reveal" style="transition-delay:.34s">or reach out directly</div>
@@ -1252,8 +1178,24 @@
 </section>
 
 <footer>
-  <p>&copy; 2026 Rafael Velasquez</p>
+  <p>&copy; 2026 Rafael Velasquez &nbsp;·&nbsp; <span style="opacity:.5">Press <kbd style="font-size:9px">?</kbd> for quick nav</span></p>
 </footer>
+
+<!-- QUICK NAV OVERLAY -->
+<div class="quick-nav" id="quick-nav" role="dialog" aria-label="Quick navigation" aria-hidden="true">
+  <div class="qn-box">
+    <div class="qn-head">Quick Navigation</div>
+    <div class="qn-items">
+      <a href="#about"      class="qn-item" data-key="a"><kbd>A</kbd> About</a>
+      <a href="#hosthelper" class="qn-item" data-key="h"><kbd>H</kbd> HostHelper</a>
+      <a href="#background" class="qn-item" data-key="b"><kbd>B</kbd> Background</a>
+      <a href="#my-take"    class="qn-item" data-key="t"><kbd>T</kbd> My Take</a>
+      <a href="#skills"     class="qn-item" data-key="s"><kbd>S</kbd> Skills</a>
+      <a href="#contact"    class="qn-item" data-key="c"><kbd>C</kbd> Contact</a>
+    </div>
+    <div class="qn-foot">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+  </div>
+</div>
 
 <script>
   // ── SCROLL PROGRESS BAR
@@ -1281,6 +1223,21 @@
     so.observe(row);
   });
 
+  // ── KEYBOARD QUICK NAV
+  const quickNav = document.getElementById('quick-nav');
+  const keyMap = { a:'#about', h:'#hosthelper', b:'#background', t:'#my-take', s:'#skills', c:'#contact' };
+  function closeQuickNav() { quickNav.classList.remove('open'); quickNav.setAttribute('aria-hidden','true'); }
+  function openQuickNav()  { quickNav.classList.add('open');    quickNav.setAttribute('aria-hidden','false'); }
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input,textarea')) return;
+    if (e.key === '?') { quickNav.classList.contains('open') ? closeQuickNav() : openQuickNav(); return; }
+    if (e.key === 'Escape') { closeQuickNav(); return; }
+    const target = keyMap[e.key.toLowerCase()];
+    if (target) { document.querySelector(target)?.scrollIntoView({ behavior:'smooth' }); closeQuickNav(); }
+  });
+  quickNav.querySelectorAll('.qn-item').forEach(a => a.addEventListener('click', () => setTimeout(closeQuickNav, 100)));
+  quickNav.addEventListener('click', e => { if (e.target === quickNav) closeQuickNav(); });
+
   // ── NAV scroll effect
   const nav = document.getElementById('main-nav');
   let isLight = false;
@@ -1298,14 +1255,11 @@
 
   // ── THEME TOGGLE
   const themeBtn = document.getElementById('theme-toggle');
-  const SUN_SVG  = '<svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
-  const MOON_SVG = '<svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
   themeBtn.addEventListener('click', () => {
     isLight = !isLight;
     document.documentElement.classList.toggle('light', isLight);
-    themeBtn.innerHTML = isLight ? MOON_SVG : SUN_SVG;
+    themeBtn.textContent = isLight ? '🌙' : '☀️';
     themeBtn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
-    themeBtn.setAttribute('aria-label', isLight ? 'Toggle dark mode' : 'Toggle light mode');
     updateNavBg();
   });
 
@@ -1355,30 +1309,12 @@
   setTimeout(typeLoop, 1400); // delay so hero animations settle first
 
   // ── SCROLL REVEAL
-  (function () {
-    const els = Array.from(document.querySelectorAll('.reveal'));
-    if (!els.length) return;
-
-    function markIn(el) { el.classList.add('in'); }
-
-    // IntersectionObserver: threshold 0 + no rootMargin so any pixel entering viewport fires
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { markIn(e.target); obs.unobserve(e.target); } });
-    }, { threshold: 0, rootMargin: '0px' });
-    els.forEach(el => obs.observe(el));
-
-    // Scroll fallback — catches anything the observer might miss (e.g. already-visible elements
-    // that fired before layout settled, or browsers with quirky IO implementations)
-    function scanAll() {
-      const cutoff = window.innerHeight + 60;
-      els.forEach(el => {
-        if (!el.classList.contains('in') && el.getBoundingClientRect().top < cutoff) markIn(el);
-      });
-    }
-    window.addEventListener('scroll', scanAll, { passive: true });
-    // Initial pass — reveal anything already above the fold on load
-    scanAll();
-  }());
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
   // ── NAV active state
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
