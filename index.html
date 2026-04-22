@@ -422,6 +422,7 @@
     .exp-block.compact .exp-dept { margin-bottom:10px; }
     .exp-block.compact .exp-points { margin-bottom:0; }
     .exp-block.compact .exp-points li { font-size:13.5px; }
+    .exp-divider { font-size:9.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-4); padding:28px 0 4px; border-top:1px solid var(--border); margin-top:8px; }
     .edu-highlights { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .edu-badge { font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:4px; background:var(--navy-dim); border:1px solid rgba(79,132,248,.2); color:var(--navy-lt); }
 
@@ -535,17 +536,6 @@
     .mock-msg.a { background:var(--navy-dim); border:1px solid rgba(79,132,248,.18); color:var(--text-2); border-radius:6px 6px 2px 6px; margin-left:auto; display:block; }
     .mock-ai-tag { font-size:7.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); margin-right:4px; }
 
-    /* ── QUICK NAV ───────────────────────────── */
-    .quick-nav { position:fixed; inset:0; z-index:500; background:rgba(3,6,16,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; }
-    .quick-nav.open { opacity:1; pointer-events:all; }
-    .qn-box { background:var(--bg-1); border:1px solid var(--border-hi); border-radius:var(--radius-lg); padding:28px 32px; min-width:280px; max-width:380px; width:90%; }
-    .qn-head { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:16px; }
-    .qn-items { display:flex; flex-direction:column; gap:7px; margin-bottom:18px; }
-    .qn-item { display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:6px; background:var(--surface); border:1px solid var(--border); color:var(--text-2); font-size:13px; font-weight:600; transition:all .15s; }
-    .qn-item:hover { border-color:var(--navy); color:var(--navy-lt); background:var(--navy-dim); }
-    .qn-foot { font-size:10.5px; color:var(--text-4); text-align:center; }
-    kbd { display:inline-flex; align-items:center; justify-content:center; background:var(--bg-2); border:1px solid var(--border-hi); border-radius:4px; padding:2px 6px; font-size:10px; font-weight:700; color:var(--text-2); font-family:inherit; min-width:20px; }
-    .qn-item kbd { min-width:26px; height:22px; flex-shrink:0; }
 
     /* ── MY TAKE ─────────────────────────────── */
     .take-section { position:relative; overflow:hidden; }
@@ -692,7 +682,7 @@
       </div>
 
       <p class="hero-bio">
-        I help the world's largest financial institutions navigate crypto compliance before the regulatory window closes. At <strong>EY</strong>, I advise the banks that move markets. Outside of it, I build software and write science fiction.
+        I work with large financial institutions on crypto compliance and financial crime risk — helping banks understand where regulation is heading before it gets there. At <strong>EY</strong>, that means advising some of the largest names in financial services. Outside of work, I build software and write science fiction.
       </p>
 
       <div class="hero-meta">
@@ -726,7 +716,7 @@
         <ul class="pillar-mini-list">
           <li><span class="pmi-label">Skills</span><a href="#skills">Next.js · Claude AI · Supabase</a></li>
           <li><span class="pmi-label">Writing</span>The Blood Remembers — sci-fi trilogy</li>
-          <li><span class="pmi-label">Off-hours</span>Basketball · long-form reading</li>
+          <li><span class="pmi-label">Off-hours</span>Weightlifting &amp; training · side projects · reading</li>
         </ul>
       </div>
     </aside>
@@ -1043,6 +1033,9 @@
       </div>
     </div>
 
+    <!-- Education divider -->
+    <div class="exp-divider reveal" style="transition-delay:.25s">Education</div>
+
     <!-- Villanova -->
     <div class="exp-block reveal" style="transition-delay:.28s">
       <div>
@@ -1170,14 +1163,9 @@
         <div class="book-status-tag">In progress · Book I</div>
         <div class="book-title">The Blood Remembers</div>
         <div class="book-genre">Science Fiction · Three-book series</div>
-        <p class="book-hook">
-          750 years from now, a civilization of eight billion people is running on the architecture of one man's design — and no one knows it. A story about inherited memory, bloodlines, and the weight of someone else's grief.
-        </p>
       </div>
       <div class="book-detail">
-        The world runs on <strong>mnemoric proteins</strong> — a biological technology that encodes emotional memory into DNA and passes it forward at birth. Not facts, not stories. Just feelings, stripped of context, inherited like eye color. The deeper your bloodline, the higher your standing.
-        <br /><br />
-        20+ chapters written. Full world bible. Building it slowly, the right way.
+        I kept coming back to one question: what do you owe to people you never met, whose decisions you still live inside? It's a story about inherited identity — not as metaphor, but as biology — and what happens when a system built by one person outlives them by seven centuries. <strong>20+ chapters in. Building it slowly.</strong>
       </div>
     </div>
   </div>
@@ -1264,24 +1252,8 @@
 </section>
 
 <footer>
-  <p>&copy; 2026 Rafael Velasquez &nbsp;·&nbsp; <span style="opacity:.5">Press <kbd style="font-size:9px">?</kbd> for quick nav</span></p>
+  <p>&copy; 2026 Rafael Velasquez</p>
 </footer>
-
-<!-- QUICK NAV OVERLAY -->
-<div class="quick-nav" id="quick-nav" role="dialog" aria-label="Quick navigation" aria-hidden="true">
-  <div class="qn-box">
-    <div class="qn-head">Quick Navigation</div>
-    <div class="qn-items">
-      <a href="#about"      class="qn-item" data-key="a"><kbd>A</kbd> About</a>
-      <a href="#hosthelper" class="qn-item" data-key="h"><kbd>H</kbd> HostHelper</a>
-      <a href="#background" class="qn-item" data-key="b"><kbd>B</kbd> Background</a>
-      <a href="#my-take"    class="qn-item" data-key="t"><kbd>T</kbd> My Take</a>
-      <a href="#skills"     class="qn-item" data-key="s"><kbd>S</kbd> Skills</a>
-      <a href="#contact"    class="qn-item" data-key="c"><kbd>C</kbd> Contact</a>
-    </div>
-    <div class="qn-foot">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
-  </div>
-</div>
 
 <script>
   // ── SCROLL PROGRESS BAR
@@ -1308,21 +1280,6 @@
     }, { threshold: 0.5 });
     so.observe(row);
   });
-
-  // ── KEYBOARD QUICK NAV
-  const quickNav = document.getElementById('quick-nav');
-  const keyMap = { a:'#about', h:'#hosthelper', b:'#background', t:'#my-take', s:'#skills', c:'#contact' };
-  function closeQuickNav() { quickNav.classList.remove('open'); quickNav.setAttribute('aria-hidden','true'); }
-  function openQuickNav()  { quickNav.classList.add('open');    quickNav.setAttribute('aria-hidden','false'); }
-  document.addEventListener('keydown', e => {
-    if (e.target.matches('input,textarea')) return;
-    if (e.key === '?') { quickNav.classList.contains('open') ? closeQuickNav() : openQuickNav(); return; }
-    if (e.key === 'Escape') { closeQuickNav(); return; }
-    const target = keyMap[e.key.toLowerCase()];
-    if (target) { document.querySelector(target)?.scrollIntoView({ behavior:'smooth' }); closeQuickNav(); }
-  });
-  quickNav.querySelectorAll('.qn-item').forEach(a => a.addEventListener('click', () => setTimeout(closeQuickNav, 100)));
-  quickNav.addEventListener('click', e => { if (e.target === quickNav) closeQuickNav(); });
 
   // ── NAV scroll effect
   const nav = document.getElementById('main-nav');
