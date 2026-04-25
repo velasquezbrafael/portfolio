@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Lora:ital,wght@1,600;1,700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -159,26 +158,7 @@
 
     .hero-inner { max-width: 1140px; margin: 0 auto; width: 100%; position: relative; z-index: 1; display: flex; align-items: center; gap: 64px; }
     .hero-left { flex: 1 1 auto; min-width: 0; }
-    .hero-right { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; }
-    .hero-photo-wrap {
-      position: relative; width: 260px;
-    }
-    .hero-photo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--navy) 0%, transparent 60%);
-      z-index: 0;
-    }
-    .hero-photo {
-      position: relative; z-index: 1;
-      width: 260px; height: 320px;
-      object-fit: cover; object-position: center top;
-      border-radius: 14px;
-      display: block;
-      opacity: 0; animation: fade-up .8s ease .6s forwards;
-    }
+    .hero-right { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; }
 
     @keyframes fade-up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fade-in  { from { opacity:0; } to { opacity:1; } }
@@ -305,7 +285,6 @@
     .rec-item:last-child { border-right: none; }
     .rec-item a { color: inherit; transition: color .15s; }
     .rec-item a:hover { color: var(--navy-lt); }
-    .rec-icon { width:14px; height:14px; stroke:var(--text-4); flex-shrink:0; margin-right:7px; vertical-align:middle; position:relative; top:-1px; }
     .rec-sup { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-4); margin-right: 3px; }
 
     /* ── SECTION SHARED ──────────────────────── */
@@ -431,6 +410,25 @@
     .s-tag.hi { background:var(--navy-dim); border-color:rgba(79,132,248,.28); color:var(--navy-lt); font-weight:600; }
 
     /* ── BOOK — red accents ──────────────────── */
+    /* ── HERO SUMMARY CARD ──────────────────── */
+    .hero-summary { display:flex; flex-direction:column; gap:0; border:1px solid var(--border-hi); border-radius:var(--radius-lg); background:var(--surface); overflow:hidden; min-width:220px; }
+    .hs-block { padding:16px 20px; border-bottom:1px solid var(--border); }
+    .hs-block:last-child { border-bottom:none; }
+    .hs-label { font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-4); margin-bottom:10px; }
+    .hs-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--text-2); line-height:1.5; margin-bottom:5px; }
+    .hs-item:last-child { margin-bottom:0; }
+    .hs-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+    .hs-dot.navy { background:var(--navy); }
+    .hs-dot.green { background:var(--green); }
+    .hs-dot.dim { background:var(--border-hi); }
+
+    /* ── CONTACT PHOTO ──────────────────────── */
+    .contact-inner { display:grid; grid-template-columns:1fr auto; gap:64px; align-items:start; }
+    .contact-photo-wrap { position:relative; width:220px; flex-shrink:0; }
+    .contact-photo-wrap::before { content:''; position:absolute; inset:-2px; border-radius:16px; background:linear-gradient(135deg,var(--navy) 0%,transparent 60%); z-index:0; }
+    .contact-photo { position:relative; z-index:1; width:220px; height:270px; object-fit:cover; object-position:center top; border-radius:14px; display:block; }
+    @media (max-width:768px) { .contact-inner { grid-template-columns:1fr; } .contact-photo-wrap { display:none; } }
+
     /* ── CLEARCHAIN ────────────────────────── */
     .cc-bg { position: relative; overflow: hidden; }
     .cc-bg::after { content:''; position:absolute; top:-200px; left:-150px; width:600px; height:600px; background:radial-gradient(circle,rgba(0,200,120,0.06) 0%,transparent 65%); pointer-events:none; }
@@ -606,10 +604,8 @@
     @media (max-width:600px) {
       .section { padding:68px 20px; }
       .hero { padding:100px 20px 60px; }
-      .hero-inner { flex-direction: column-reverse; gap: 32px; }
-      .hero-right { width: 100%; align-items: flex-start; }
-      .hero-photo-wrap { width: 140px; }
-      .hero-photo { width: 140px; height: 172px; }
+      .hero-inner { flex-direction: column; gap: 32px; }
+      .hero-right { display: none; }
       .hero-name { letter-spacing:-1.5px; }
       .hero-meta { flex-direction:column; gap:4px; align-items:flex-start; }
       .hero-meta-item::after { display:none; }
@@ -636,7 +632,10 @@
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode" title="Switch to light mode">☀️</button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode" title="Switch to light mode">
+        <svg id="theme-icon-sun" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
       <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
@@ -698,8 +697,34 @@
     </div>
 
     <div class="hero-right">
-      <div class="hero-photo-wrap">
-        <img src="headshot.jpg" alt="Rafael Velasquez" class="hero-photo" />
+      <div class="hero-summary" style="opacity:0;animation:fade-up .8s ease .6s forwards;">
+        <div class="hs-block">
+          <div class="hs-label">Currently</div>
+          <div class="hs-item">
+            <span class="hs-dot navy"></span>Technology Consulting Staff · EY
+          </div>
+          <div class="hs-item">
+            <span class="hs-dot navy"></span>Financial Crimes · AML &amp; Crypto
+          </div>
+        </div>
+        <div class="hs-block">
+          <div class="hs-label">Building</div>
+          <div class="hs-item">
+            <span class="hs-dot green"></span>HostHelper — AI STR management
+          </div>
+          <div class="hs-item">
+            <span class="hs-dot green"></span>ClearChain — Crypto AML platform
+          </div>
+        </div>
+        <div class="hs-block">
+          <div class="hs-label">Also</div>
+          <div class="hs-item">
+            <span class="hs-dot dim"></span>The Blood Remembers — Sci-fi series
+          </div>
+          <div class="hs-item">
+            <span class="hs-dot dim"></span>New York, NY
+          </div>
+        </div>
       </div>
     </div>
 
@@ -715,23 +740,23 @@
 <div class="rec-strip" role="complementary" aria-label="Recognition and credentials">
   <div class="rec-strip-inner">
     <div class="rec-item">
-      <i data-lucide="newspaper" class="rec-icon"></i>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v2"/><path d="M2 8h14v14H2z"/></svg>&nbsp;
       <a href="https://www.forbes.com/sites/briannegarrett/2020/05/08/8-under-18-the-young-trailblazers-stepping-up-during-the-pandemic/"
          target="_blank" rel="noopener">
         <span class="rec-sup">Press</span>Forbes · 8 Under 18 · 2020
       </a>
     </div>
     <div class="rec-item">
-      <i data-lucide="building-2" class="rec-icon"></i><span><span class="rec-sup">Current</span>Ernst &amp; Young · Financial Crimes</span>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>&nbsp;<span><span class="rec-sup">Current</span>Ernst &amp; Young · Financial Crimes</span>
     </div>
     <div class="rec-item">
-      <i data-lucide="graduation-cap" class="rec-icon"></i><span><span class="rec-sup">Education</span>Villanova University · B.S. Computer Science</span>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>&nbsp;<span><span class="rec-sup">Education</span>Villanova University · B.S. Computer Science</span>
     </div>
     <div class="rec-item">
-      <i data-lucide="award" class="rec-icon"></i><span><span class="rec-sup">Academic</span>GPA 3.8 · Dean's List 6×</span>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>&nbsp;<span><span class="rec-sup">Academic</span>GPA 3.8 · Dean's List 6×</span>
     </div>
     <div class="rec-item">
-      <i data-lucide="map-pin" class="rec-icon"></i><span><span class="rec-sup">Based in</span>New York, NY</span>
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>&nbsp;<span><span class="rec-sup">Based in</span>New York, NY</span>
     </div>
   </div>
 </div>
@@ -902,28 +927,28 @@
 
         <div class="feat-list">
           <div class="feat-row">
-            <div class="feat-icon">🤖</div>
+            <div class="feat-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
             <div>
               <div class="feat-name">AI Guest Portal</div>
               <div class="feat-body">Claude-powered support that handles check-in, FAQs, and property questions — without a human on call</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon">📊</div>
+            <div class="feat-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
             <div>
               <div class="feat-name">Owner Dashboard</div>
               <div class="feat-body">Revenue tracking, occupancy analytics, maintenance logs, and booking calendar in one view</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon">🔗</div>
+            <div class="feat-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
             <div>
               <div class="feat-name">Direct Booking</div>
               <div class="feat-body">Property-branded web app that takes reservations directly — no platform cut</div>
             </div>
           </div>
           <div class="feat-row">
-            <div class="feat-icon">⚙️</div>
+            <div class="feat-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
             <div>
               <div class="feat-name">Automated Ops</div>
               <div class="feat-body">Checkout checklists, maintenance alerts, guest QR codes, and scheduled automations</div>
@@ -1274,6 +1299,8 @@
   <div class="container" style="position:relative;z-index:1">
     <hr class="section-rule" />
     <div class="section-label reveal">Contact</div>
+    <div class="contact-inner">
+    <div>
     <h2 class="c-heading reveal" style="transition-delay:.08s">Let's talk.</h2>
     <p class="c-sub reveal" style="transition-delay:.16s">
       I work with a small number of teams and institutions each year. If you think there's a fit, let's find out.
@@ -1300,7 +1327,7 @@
           Send message
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <div class="form-success" id="form-success">✓ Opening your email client — I'll reply same day.</div>
+        <div class="form-success" id="form-success"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg> Opening your email client — I'll reply same day.</div>
       </div>
     </form>
 
@@ -1319,7 +1346,7 @@
         LinkedIn
       </a>
       <!-- UPDATE: verify github username is correct -->
-      <a href="https://github.com/velasquezbrafael-source" target="_blank" rel="noopener" class="c-link">
+      <a href="https://github.com/velasquezbrafael" target="_blank" rel="noopener" class="c-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         GitHub
       </a>
@@ -1342,6 +1369,11 @@
 
     <hr class="c-divider reveal" style="transition-delay:.46s" />
     <p class="c-note reveal" style="transition-delay:.50s">Based in New York, NY &nbsp;·&nbsp; Open to remote or hybrid</p>
+    </div><!-- end contact left col -->
+    <div class="contact-photo-wrap reveal" style="transition-delay:.3s">
+      <img src="headshot.jpg" alt="Rafael Velasquez" class="contact-photo" />
+    </div>
+    </div><!-- end contact-inner -->
   </div>
 </section>
 
@@ -1427,7 +1459,8 @@
   themeBtn.addEventListener('click', () => {
     isLight = !isLight;
     document.documentElement.classList.toggle('light', isLight);
-    themeBtn.textContent = isLight ? '🌙' : '☀️';
+    document.getElementById('theme-icon-sun').style.display = isLight ? 'none' : 'block';
+    document.getElementById('theme-icon-moon').style.display = isLight ? 'block' : 'none';
     themeBtn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
     updateNavBg();
   });
@@ -1517,8 +1550,6 @@
     document.getElementById('form-success').style.display = 'block';
     this.reset();
   });
-
-  lucide.createIcons();
 </script>
 
 </body>
