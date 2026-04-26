@@ -414,8 +414,12 @@
     .hs-block { padding:22px 26px; border-bottom:1px solid var(--border); }
     .hs-block:last-child { border-bottom:none; }
     .hs-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-4); margin-bottom:12px; }
-    .hs-item { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); line-height:1.5; margin-bottom:7px; }
+    .hs-item { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); line-height:1.5; margin-bottom:7px; cursor: default; }
     .hs-item:last-child { margin-bottom:0; }
+    .hs-item.hs-link { cursor: pointer; border-radius: 6px; padding: 4px 8px; margin: -4px -8px; transition: background .18s ease, color .18s ease, padding-left .18s ease; text-decoration: none; color: var(--text-2); }
+    .hs-item.hs-link:hover { background: rgba(255,255,255,0.06); color: var(--text); padding-left: 12px; }
+    .hs-item.hs-link::after { content: '↗'; font-size: 10px; opacity: 0; margin-left: 4px; transition: opacity .18s ease; vertical-align: middle; }
+    .hs-item.hs-link:hover::after { opacity: 0.5; }
     .hs-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
     .hs-dot.navy { background:var(--navy); }
     .hs-dot.green { background:var(--green); }
@@ -699,30 +703,30 @@
       <div class="hero-summary" style="opacity:0;animation:fade-up .8s ease .6s forwards;">
         <div class="hs-block">
           <div class="hs-label">Currently</div>
-          <div class="hs-item">
+          <a class="hs-item hs-link" href="#about">
             <span class="hs-dot navy"></span>Technology Consulting Staff · EY
-          </div>
-          <div class="hs-item">
+          </a>
+          <a class="hs-item hs-link" href="#about">
             <span class="hs-dot navy"></span>Financial Crimes · AML &amp; Crypto
-          </div>
+          </a>
         </div>
         <div class="hs-block">
           <div class="hs-label">Building</div>
-          <div class="hs-item">
+          <a class="hs-item hs-link" href="#hosthelper">
             <span class="hs-dot green"></span>HostHelper — AI STR management
-          </div>
-          <div class="hs-item">
+          </a>
+          <a class="hs-item hs-link" href="#clearchain">
             <span class="hs-dot green"></span>ClearChain — Crypto AML platform
-          </div>
+          </a>
         </div>
         <div class="hs-block">
           <div class="hs-label">Also</div>
-          <div class="hs-item">
+          <a class="hs-item hs-link" href="#book">
             <span class="hs-dot dim"></span>The Blood Remembers — Sci-fi series
-          </div>
-          <div class="hs-item">
+          </a>
+          <a class="hs-item hs-link" href="#contact">
             <span class="hs-dot dim"></span>New York, NY
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -1278,7 +1282,7 @@
 </section>
 
 <!-- BOOK — red accents -->
-<section class="section book-section">
+<section id="book" class="section book-section">
   <div class="container">
     <hr class="section-rule" />
     <div class="section-label red reveal">Also working on</div>
