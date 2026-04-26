@@ -139,7 +139,7 @@
     .hero {
       position: relative; min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 130px 32px 80px; overflow: hidden;
+      padding: 130px 32px 56px; overflow: hidden;
     }
 
     .hero-orb { position: absolute; pointer-events: none; border-radius: 50%; top: -15%; right: -8%; width: 700px; height: 700px; background: radial-gradient(circle, var(--navy-glow) 0%, transparent 65%); animation: orb-drift 12s ease-in-out infinite; }
@@ -287,7 +287,7 @@
     .rec-sup { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-4); margin-right: 3px; }
 
     /* ── SECTION SHARED ──────────────────────── */
-    .section { padding: 88px 32px; position: relative; z-index: 1; }
+    .section { padding: 64px 32px; position: relative; z-index: 1; }
     .section-alt { background: var(--bg-1); }
     .container { max-width: 1140px; margin: 0 auto; }
 
@@ -429,7 +429,7 @@
     .contact-inner { display:grid; grid-template-columns:1fr 400px; gap:64px; align-items:stretch; }
     .contact-photo-wrap { position:relative; border-radius:16px; overflow:hidden; min-height:480px; }
     .contact-photo-wrap::before { content:''; position:absolute; inset:0; border-radius:16px; background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%); z-index:1; pointer-events:none; }
-    .contact-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:16px; display:block; z-index:0; }
+    .contact-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 15%; border-radius:16px; display:block; z-index:0; }
     @media (max-width:768px) { .contact-inner { grid-template-columns:1fr; } .contact-photo-wrap { display:none; } }
 
     /* ── CLEARCHAIN ────────────────────────── */
@@ -507,7 +507,7 @@
 
     .calendly-btn {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 13px 26px; border-radius: 5px;
+      padding: 12px 28px; border-radius: 5px;
       font-size: 14px; font-weight: 700;
       background: transparent; color: var(--text);
       border: 1px solid var(--border-hi);
@@ -779,7 +779,7 @@
           Outside of EY, I build software. <strong>HostHelper</strong> started as a problem I wanted solved: short-term rental hosts were managing properties across too many disconnected tools, with no intelligence tying them together. I designed the system I wanted to exist and started building it.
         </p>
         <p>
-          I also write. <em>The Blood Remembers</em> is a science fiction series I've been developing on the side — 20+ chapters in, full world bible. It stays in this portfolio because building a coherent fictional universe across three books requires the same long-horizon systems thinking I bring to everything else.
+          I also write. <em>The Blood Remembers</em> — a science fiction series set 750 years from now. 20+ chapters in.
         </p>
       </div>
 
@@ -855,7 +855,7 @@
           </div>
           <div class="stat-item">
             <div class="stat-num">0%</div>
-            <div class="stat-desc">Platform fees on direct bookings</div>
+            <div class="stat-desc">0% platform fees</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">24/7</div>
@@ -1229,7 +1229,7 @@
   <div class="container">
     <hr class="section-rule" />
     <div class="section-label reveal">Skills</div>
-    <h2 class="s-heading reveal" style="transition-delay:.06s">What I work with</h2>
+    <h2 class="s-heading reveal" style="transition-delay:.06s">Skills</h2>
 
     <div class="skills-grid reveal" style="transition-delay:.14s">
       <div class="sg">
@@ -1282,7 +1282,7 @@
 </section>
 
 <!-- BOOK — red accents -->
-<section id="book" class="section book-section">
+<section id="book" class="section book-section" style="padding-top:48px;padding-bottom:48px;">
   <div class="container">
     <hr class="section-rule" />
     <div class="section-label red reveal">Also working on</div>
